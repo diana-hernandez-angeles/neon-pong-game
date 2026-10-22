@@ -1,8 +1,6 @@
 # ACCT 411: Playable Pong Game inside a Google Colab Cell
 # REPAIRED & REMIXED NEON VERSION: Fixed text string quote and applied custom color theme!
 
-from IPython.display import HTML
-
 pong_game_code = """
 <!DOCTYPE html>
 <html>
