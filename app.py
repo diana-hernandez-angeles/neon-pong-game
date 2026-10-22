@@ -1,7 +1,18 @@
-# ACCT 411: Playable Pong Game inside a Google Colab Cell
-# REPAIRED & REMIXED NEON VERSION: Fixed text string quote and applied custom color theme!
+# ACCT 411: Playable Pong Game Dashboard
+# This file runs live on the internet via Streamlit!
 
-pong_game_code = """
+import streamlit as st
+import streamlit.components.v1 as components
+
+# Set up the webpage title layout
+st.set_page_config(page_title="Diana's Neon Pong", layout="centered")
+
+# Plain language header text using Streamlit markdown elements
+st.markdown("<h1 style='text-align: center; color: #00ffff;'>⚡ DIANA'S RETRO NEON PONG ⚡</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #ff007f;'>Move your trackpad smoothly up and down inside the canvas box to play!</p>", unsafe_allow_html=True)
+
+# The core HTML, CSS, and JavaScript game code structure
+pong_html_content = """
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,26 +27,10 @@ pong_game_code = """
             box-shadow: 0px 0px 20px #ff007f; /* Pink neon glow effect */
             cursor: none; /* Hide standard cursor pointer over the court */
         }
-        .game-container {
-            text-align: center;
-            font-family: 'Courier New', Courier, monospace;
-            color: #00ffff; /* Neon cyan text header decoration */
-            background-color: #060814; /* Deep dark frame wrap */
-            padding: 15px;
-            border-radius: 12px;
-            width: 630px;
-            margin: 0 auto;
-            border: 2px solid #b5179e;
-            box-shadow: 0px 0px 15px #b5179e;
-        }
     </style>
 </head>
 <body>
-    <div class="game-container">
-        <h2>⚡ DIANA'S RETRO NEON PONG ⚡</h2>
-        <p style="color: #00f5d4;">Slide your trackpad smoothly up and down to play!</p>
-        <canvas id="pongCanvas" width="600" height="400"></canvas>
-    </div>
+    <canvas id="pongCanvas" width="600" height="400"></canvas>
 
     <script>
         const canvas = document.getElementById("pongCanvas");
@@ -67,7 +62,6 @@ pong_game_code = """
 
         function drawCircle(x, y, r, color) {
             ctx.fillStyle = color;
-            ctx.fillStyle = color;
             ctx.beginPath();
             ctx.arc(x, y, r, 0, Math.PI * 2, false);
             ctx.closePath();
@@ -93,7 +87,7 @@ pong_game_code = """
                 ball.speedY = -ball.speedY;
             }
 
-            // Detect matching horizontal bounce zone contacts
+            // Detect active paddle collision zone
             let player = (ball.x < canvas.width / 2) ? userPaddle : aiPaddle;
 
             if (ball.x - ball.radius < player.x + player.width && 
@@ -125,7 +119,6 @@ pong_game_code = """
             // Dotted net separator line
             ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
             ctx.beginPath();
-            ctx.setLineDash([5, 15]);
             ctx.moveTo(canvas.width / 2, 0);
             ctx.lineTo(canvas.width / 2, canvas.height);
             ctx.stroke();
@@ -152,4 +145,5 @@ pong_game_code = """
 </html>
 """
 
+# HTML component integration tool that builds it into the interface
 components.html(pong_html_content, height=470)
