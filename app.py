@@ -11,7 +11,7 @@ pong_game_code = """
         /* CSS: Style the game frame and court layout */
         #pongCanvas {
             /* Neon navy and dark purple color palette background mix */
-            background: linear-gradient(135deg, #0b112c, #230c33);
+            background: linear-gradient(135deg, #0b112c, #230c33); 
             display: block;
             margin: 0 auto;
             border: 4px solid #ff007f; /* Kept the hot pink neon boundary line color */
@@ -98,9 +98,9 @@ pong_game_code = """
             // Detect matching horizontal bounce zone contacts
             let player = (ball.x < canvas.width / 2) ? userPaddle : aiPaddle;
 
-            if (ball.x - ball.radius < player.x + player.width &&
-                ball.x + ball.radius > player.x &&
-                ball.y > player.y &&
+            if (ball.x - ball.radius < player.x + player.width && 
+                ball.x + ball.radius > player.x && 
+                ball.y > player.y && 
                 ball.y < player.y + player.height) {
                 ball.speedX = -ball.speedX;
             }
@@ -117,13 +117,13 @@ pong_game_code = """
 
         // Draw loop clear and redraw commands
         function render() {
-            // Re-render our custom linear color background grid
+            // Re-render our custom linear color background grid 
             let grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
             grad.addColorStop(0, "#0b112c"); // Neon Navy mix
             grad.addColorStop(1, "#230c33"); // Dark Purple mix
             ctx.fillStyle = grad;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-
+            
             // Dotted net separator line
             ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
             ctx.beginPath();
@@ -135,10 +135,10 @@ pong_game_code = """
             // Render live neon game asset elements on top of the layout
             drawText(userPaddle.score, canvas.width / 4, canvas.height / 4, "#b5179e"); // Purple score font
             drawText(aiPaddle.score, 3 * canvas.width / 4, canvas.height / 4, "#00f5d4"); // Aqua score font
-
+            
             drawRect(userPaddle.x, userPaddle.y, userPaddle.width, userPaddle.height, userPaddle.color); // User Paddle shape
             drawRect(aiPaddle.x, aiPaddle.y, aiPaddle.width, aiPaddle.height, aiPaddle.color); // AI Paddle shape
-
+            
             drawCircle(ball.x, ball.y, ball.radius, ball.color); // Glowing neon yellow match ball
         }
 
@@ -155,4 +155,3 @@ pong_game_code = """
 """
 
 HTML(pong_game_code)
-
