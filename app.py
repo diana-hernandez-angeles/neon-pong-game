@@ -152,4 +152,4 @@ pong_game_code = """
 </html>
 """
 
-components.html(pong_html_content, height=470
+components.html(pong_html_content, height=470)
